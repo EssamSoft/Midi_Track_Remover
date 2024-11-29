@@ -114,6 +114,8 @@ class MidiProcessorGUI(tk.Frame):
         tracks_frame.grid_rowconfigure(0, weight=1)  # Allow the canvas to expand
         tracks_frame.grid_columnconfigure(0, weight=1)  # Allow the canvas to expand
 
+        self.files_tree.bind("<Button-1>", self._on_tree_click)  # Bind click event
+
     def _update_commands(self):
         """Update button commands after presenter is set"""
         self.select_files_btn.config(command=self._browse_files)
@@ -225,3 +227,13 @@ class MidiProcessorGUI(tk.Frame):
     
     def show_success(self, message: str) -> None:
         tk.messagebox.showinfo("Success", message)
+
+    def _on_tree_click(self, event):
+        """Deselect files when clicking on an empty area of the treeview."""
+        # Get the region of the click
+        region = self.files_tree.identify_region(event.x, event.y)
+        if region == "heading" or region == "cell":
+            # If the click is on the heading or a cell, do nothing
+            return
+        # Clear selection if clicked on an empty area
+        self.files_tree.selection_remove(*self.files_tree.selection())

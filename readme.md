@@ -23,8 +23,8 @@ A MIDI Processor application that allows users to manage and manipulate MIDI fil
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/midi-processor.git
-   cd midi-processor
+   git clone https://github.com/essamsoft/midi-processor.git
+   cd Midi_Track_Remover
    ```
 
 2. **Create a virtual environment (optional but recommended):**
